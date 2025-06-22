@@ -17,8 +17,6 @@ body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -34,6 +32,10 @@ header {
   width: 100%;
   height: 102px;
   background-color: #f2e9d8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 header .content-container {
@@ -74,6 +76,7 @@ header button {
 
 main {
   flex: 1;
+  margin-top: 102px;
 }
 
 .section-top {
@@ -374,6 +377,39 @@ footer .footer-right {
   display: none;
 }
 
+footer .site-links ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+footer .site-links ul li a {
+  color: #767676;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* 스크롤 탑 버튼 */
+.scroll-top {
+  position: fixed;
+  bottom: 230px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-image: url(../img/scroll-top-btn.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-image 0.3s ease;
+}
+
+.scroll-top:hover {
+  background-image: url(../img/scroll-top-btn_hover.png);
+}
+
 .section-middle .img-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -672,6 +708,10 @@ body:has(.mobile-menu-dialog[open]) .mobile-menu-overlay {
     color: #767676;
     text-decoration: none;
     font-size: 14px;
+  }
+
+  .scroll-top {
+    display: none;
   }
 
   .mobile-menu-dialog[open] {
