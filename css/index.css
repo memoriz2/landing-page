@@ -85,7 +85,7 @@ main {
   color: #000;
   font-family: "Spoqa Han Sans Neo";
   font-weight: 700;
-  font-size: clamp(20px, 30vw, 48px);
+  font-size: 24px !important;
   line-height: 1.2;
   margin-bottom: 20px;
 }
@@ -135,7 +135,7 @@ button {
   gap: 110px;
 }
 
-.section-middle img:not(.input-group img) {
+.section-middle img:not(.input-group img, .subscribe-dialog img) {
   border-radius: 30px;
   box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.4);
   object-fit: cover;
@@ -159,7 +159,7 @@ button {
 .section-middle .img-text-wrapper article h3 {
   font-family: "Spoqa Han Sans Neo";
   font-weight: 700;
-  font-size: 36px;
+  font-size: 24px !important;
   line-height: 100%;
   vertical-align: middle;
   max-width: 510px;
@@ -177,7 +177,7 @@ button {
 .section-middle .text-wrapper h3 {
   font-family: Spoqa Han Sans Neo;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 24px !important;
   line-height: 100%;
   text-align: center;
   vertical-align: middle;
@@ -226,6 +226,10 @@ button {
   height: 64px;
 }
 
+.section-middle .text-button-wrapper button {
+  align-self: flex-end;
+}
+
 .section-middle .subscribe-wrapper {
   display: flex;
   flex-direction: row;
@@ -254,7 +258,7 @@ button {
 .section-middle .subscribe-wrapper article h3 {
   font-family: Spoqa Han Sans Neo;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 24px !important;
   line-height: 100%;
   vertical-align: middle;
 }
@@ -317,23 +321,24 @@ footer {
 
 footer .content-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
-footer ul {
+footer .footer-left {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 100%;
-  margin: 0 auto;
+  justify-content: space-around;
+}
+
+footer .social-links ul {
+  display: flex;
   gap: 20px;
 }
 
-footer ul li {
+footer .social-links ul li {
   background-color: #f29d52;
   border-radius: 50%;
   width: 60px;
@@ -343,12 +348,120 @@ footer ul li {
   justify-content: center;
 }
 
-footer ul li img {
+footer .social-links ul li img {
   width: 40px;
   height: 40px;
 }
+
+footer .footer-right {
+  display: none;
+}
+
+.section-middle .img-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.section-middle .img-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Modal Styling */
+body:has(.subscribe-dialog[open])::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 999;
+}
+
+.subscribe-dialog[open] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1000;
+  background-image: url(../img/modal-bg-img.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 90%;
+  max-width: 500px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-radius: 20px;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+}
+
+.subscribe-dialog img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.subscribe-dialog h3 {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #d97652;
+}
+
+.subscribe-dialog p {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-size: 14px;
+  max-width: 300px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.subscribe-dialog button {
+  width: 100%;
+  max-width: 280px;
+}
+
+.mobile-menu-dialog {
+  display: none;
+}
+
+.mobile-menu-dialog nav {
+  text-indent: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+.mobile-menu-dialog img {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.mobile-menu-dialog nav ul {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 30px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: flex-start !important;
+}
+
+.mobile-menu-dialog nav ul li {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
 @media (max-width: 768px) {
-  /* Header Mobile Styles */
   header nav {
     width: 100%;
     max-width: 32px;
@@ -368,10 +481,9 @@ footer ul li img {
     text-indent: -9999px;
   }
 
-  /* Section-Top Mobile Styles */
   .section-top {
     height: auto;
-    padding: 50px 20px; /* 좌우 여백 추가 */
+    padding: 50px 20px;
   }
   .section-top .content-container {
     flex-direction: column;
@@ -379,26 +491,24 @@ footer ul li img {
     gap: 40px;
   }
   .section-top .text-wrapper {
-    /* 더 구체적인 선택자 사용 */
-    order: 1; /* 텍스트가 먼저 오도록 순서 지정 */
+    order: 1;
     text-align: center;
   }
   .section-top .box-hodu {
-    /* 더 구체적인 선택자 사용 */
-    order: 2; /* 이미지가 나중에 오도록 순서 지정 */
+    order: 2;
     width: 100%;
-    max-width: 350px; /* 최대 너비 설정 */
+    max-width: 350px;
     height: auto;
-    aspect-ratio: 415 / 766; /* 원본 비율 유지 */
+    aspect-ratio: 415 / 766;
     background-position: center;
   }
 
-  /* Section-Middle Mobile Styles */
   .section-middle .img-text-wrapper {
     flex-direction: column;
     gap: 30px;
     align-items: center;
   }
+
   .section-middle .img-text-wrapper img {
     width: 326px;
     height: 190px;
@@ -406,10 +516,9 @@ footer ul li img {
   }
   .section-middle .img-text-wrapper article {
     text-align: center;
-    align-items: center; /* h3, p를 중앙 정렬 */
+    align-items: center;
   }
 
-  /* Image Slider for Mobile */
   .section-middle .img-wrapper {
     justify-content: flex-start;
     overflow-x: auto;
@@ -422,13 +531,185 @@ footer ul li img {
     flex-shrink: 0;
     scroll-snap-align: center;
   }
-}
 
-/* 스크롤바 숨기기는 최하단에 유지 */
-.section-middle .img-wrapper::-webkit-scrollbar {
-  display: none;
-}
-.section-middle .img-wrapper {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  .section-middle .text-button-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .section-middle .text-button-wrapper p {
+    width: 100%;
+    height: auto;
+    text-align: left;
+  }
+
+  .section-middle .text-button-wrapper button {
+    align-self: flex-end;
+  }
+
+  .section-middle .subscribe-wrapper {
+    flex-direction: column;
+    width: calc(100% - 40px);
+    height: 298px;
+    padding: 30px 20px;
+    position: absolute;
+    bottom: -122px;
+    left: 20px;
+    right: 20px;
+    gap: 30px;
+  }
+
+  .section-middle .subscribe-wrapper article {
+    text-align: left;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section-middle .subscribe-wrapper article h3 {
+    font-size: 28px;
+    text-align: left;
+    margin: 0;
+  }
+
+  .section-middle .subscribe-wrapper article p {
+    font-size: 14px;
+    text-align: left;
+    margin: 0;
+  }
+
+  .section-middle .subscribe-wrapper > div {
+    align-self: flex-end;
+    max-width: 100%;
+    flex-direction: column;
+    gap: 15px;
+    height: auto !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .section-middle .subscribe-wrapper .input-group {
+    width: 100%;
+  }
+
+  .section-middle .subscribe-wrapper > div > div {
+    width: 100%;
+    max-width: 100%;
+    height: 45px !important;
+    background-color: white;
+    border-radius: 60px;
+    padding: 0 11px 0 30px;
+  }
+
+  .section-middle .subscribe-wrapper > div > div input {
+    width: 100%;
+    height: 30px !important;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    vertical-align: middle;
+  }
+
+  .section-middle .subscribe-wrapper > div button {
+    align-self: flex-end;
+    width: fit-content;
+  }
+
+  footer {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  footer .content-container {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  footer .footer-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 49px;
+  }
+
+  footer .social-links ul li {
+    width: 32px;
+    height: 32px;
+  }
+
+  footer .social-links ul li img {
+    width: 20px;
+    height: 20px;
+  }
+
+  footer .footer-right {
+    display: block;
+    width: 100%;
+    max-width: 85px;
+  }
+
+  footer .site-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  footer .site-links ul li a {
+    color: #767676;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .mobile-menu-dialog[open] {
+    display: flex !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 80% !important;
+    max-width: 350px !important;
+    height: 100vh !important;
+    background-color: #263140 !important;
+    margin: 0 !important;
+    padding: 50px 0 50px 20px !important;
+    border: none !important;
+    z-index: 2000 !important;
+    flex-direction: column !important;
+    gap: 60px !important;
+    box-sizing: border-box !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .mobile-menu-dialog .mobile-menu-link {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    display: block !important;
+  }
+  .mobile-menu-dialog .mobile-menu-btn {
+    align-self: flex-start !important;
+    background-color: #d98c5f !important;
+    color: #fff !important;
+    padding: 15px 30px !important;
+    border-radius: 50px !important;
+    font-size: 16px !important;
+    border: none !important;
+    display: block !important;
+    text-indent: 0 !important;
+    background-image: none !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+  }
 }
