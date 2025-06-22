@@ -218,8 +218,12 @@ button {
 }
 
 .section-middle .img-wrapper img {
-  width: 378px;
-  height: 378px;
+  flex-shrink: 1;
+  scroll-snap-align: center;
+  width: 100%;
+  max-width: 378px;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border-radius: 30px;
 }
 
@@ -441,6 +445,22 @@ body:has(.subscribe-dialog[open])::after {
   max-width: 280px;
 }
 
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 1999;
+}
+
+/* dialog가 열려있을 때 오버레이 보이기 */
+body:has(.mobile-menu-dialog[open]) .mobile-menu-overlay {
+  display: block;
+}
+
 .mobile-menu-dialog {
   display: none;
 }
@@ -512,7 +532,7 @@ body:has(.subscribe-dialog[open])::after {
   }
 
   .section-middle .img-wrapper img {
-    flex-shrink: 0;
+    flex-shrink: 1;
     scroll-snap-align: center;
   }
 
