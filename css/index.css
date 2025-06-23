@@ -497,9 +497,9 @@ body:has(.mobile-menu-dialog[open]) .mobile-menu-overlay {
   display: block;
 }
 
-.mobile-menu-dialog {
+/* .mobile-menu-dialog {
   display: none;
-}
+} */
 
 @media (max-width: 768px) {
   header nav {
@@ -715,8 +715,8 @@ body:has(.mobile-menu-dialog[open]) .mobile-menu-overlay {
   }
 
   .mobile-menu-dialog[open] {
-    display: flex !important;
-    position: fixed !important;
+    display: flex;
+    position: fixed;
     top: 0;
     right: 0;
     left: auto;
