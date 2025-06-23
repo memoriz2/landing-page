@@ -199,27 +199,7 @@ left: 50px; /* 왼쪽에서 50px 떨어뜨려 */
 
 #### ✅ 해결방법
 
-**해결책 1: 올바른 CSS 선택자 사용**
-
-```css
-.mobile-menu-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-  z-index: 1999;
-}
-
-/* dialog가 열려있을 때 오버레이 보이기 */
-.mobile-menu-dialog[open] ~ .mobile-menu-overlay {
-  display: block !important;
-}
-```
-
-**해결책 2: 더 강력한 선택자 추가**
+**해결책 1: 더 강력한 선택자 추가**
 
 ```css
 /* body:has() 선택자로 더 강력하게 */
